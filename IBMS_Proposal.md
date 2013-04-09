@@ -1,10 +1,10 @@
-<center>In the name of Allah</center>
--------------------------------------
-<br>
+In the name of Allah 
+--------------------
+
  Industry Business Management System (IBMS) 
 =============================================
 
-<br>
+
 ####Team Members####
 *  Mustafa Mohammadi 20595
 *  Tamim Saeedi 20606
