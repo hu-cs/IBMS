@@ -1,4 +1,3 @@
-
 #Statement of work and requirement#
 This project covers all accounting and management aspects of an industrial company that will be produced in two versions.
 One of the biggest problems of the industrial companies is accounting and measurement of their profit.
