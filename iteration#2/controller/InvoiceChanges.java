@@ -123,16 +123,13 @@ public class InvoiceChanges implements ActionListener {
 					}
 				}
 			}
-			// Write the update query
 
 		}
 		return 0;
 
 	}
 
-	// updateStock();
 
-	// }
 
 	/**
 	 * After the invoice emission, the shopped invoice Materials will be added
@@ -205,21 +202,18 @@ public class InvoiceChanges implements ActionListener {
 							+ dateAndTime + "'" + "," + DataYearId.yearId
 							+ ",'" + customerName + "')");
 
-			// statement.setInt(0, DataYearId.yearId);
 			statement.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		// updateCustomerAccount();
 	}
 
 	/**
 	 * After the invoice emission, the shopped invoice sold material will be
 	 * added to the Sold material list.
 	 */
-	// It is done
 
 	private void changeTheSoldMaterialList() {
 
@@ -249,8 +243,6 @@ public class InvoiceChanges implements ActionListener {
 										+ "' and DataYearId ="
 										+ DataYearId.yearId);
 
-						// statement.setInt(0, DataYearId.yearId);
-						// // statement.seti
 
 						statement.execute();
 					} catch (SQLException e) {
@@ -268,8 +260,6 @@ public class InvoiceChanges implements ActionListener {
 		String unit;
 		float qty;
 		float sellCost;
-		// InvoiceMaterial a = new InvoiceMaterial(name, unit, finishedCost,
-		// sellCost, qty)
 
 		for (int rowCounter = 0; rowCounter < invoiceTable.getRowCount(); rowCounter++) {
 			materialName = invoiceTable.getValueAt(rowCounter, 4).toString();
@@ -312,160 +302,7 @@ public class InvoiceChanges implements ActionListener {
 
 	}
 
-	/**
-	 * updates the stock list
-	 */
-	// It is done
-	private void updateStock() {
-		String name;
-		String unit;
-		int qty;
-		((DefaultTableModel) stockTable.getModel()).setRowCount(0);
-		try {
-			PreparedStatement statement = (PreparedStatement) DBConnection.connection
-					.prepareStatement("SELECT Name,Unit,Quantity FROM `stock` ");
-			ResultSet result = statement.executeQuery();
-			while (result.next()) {
-				name = result.getString(1);
-				unit = result.getString(2);
-				qty = result.getInt(3);
 
-				StockMaterial newMaterial = new StockMaterial(name, unit, qty);
-				Stock.stockMaterialList.add(newMaterial);
-				((DefaultTableModel) stockTable.getModel())
-						.addRow(new String[] {
-								stockTable.getRowCount() + 1 + "", name,
-								qty + "", unit });
-			}
-
-		} catch (SQLException e) {
-			// TODO exception handling
-			e.printStackTrace();
-		}
-
-	}
-
-	/**
-	 * It updates the sold material list after the invoice emission.
-	 */
-	// It is done
-	private void updateSoldMaterialList() {
-
-		((DefaultTableModel) soldMaterialList.getModel()).setRowCount(0);
-
-		String name;
-		String unit;
-		int qty;
-
-		try {
-			PreparedStatement statement = (PreparedStatement) DBConnection.connection
-					.prepareStatement("select Name,Unit,Quantity from sold_material_list");
-			ResultSet result = statement.executeQuery();
-			while (result.next()) {
-				name = result.getString(1);
-				unit = result.getString(2);
-				qty = result.getInt(3);
-
-				SoldMaterial.soldMaterial
-						.add(new SoldMaterial(name, unit, qty));
-				((DefaultTableModel) soldMaterialList.getModel())
-						.addRow(new String[] {
-								soldMaterialList.getRowCount() + 1 + "", name,
-								qty + "", unit });
-
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	private void updateSellHistoryList() {
-		// TODO The material sell history must to be updated at the interface
-		// opening time.
-
-		// try {
-		// PreparedStatement statement = (PreparedStatement)
-		// DBConnection.connection
-		// .prepareStatement("SELECT "
-		// + "`Quantity`,`Buyer`,`Date_And_Time` "
-		// + "FROM `sell_history` where Name = ''");
-		//
-		// ResultSet result = statement.executeQuery();
-		// while(result.next()){
-		//
-		//
-		// }
-		// } catch (SQLException e) {
-		// e.printStackTrace();
-		// }
-		//
-	}
-
-	/**
-	 * Updates the customer shopping account
-	 */
-	// It is done
-	private void updateCustomerAccount() {
-
-		int invoiceNumber;
-		double invoiceCost;
-		String dateAndTime;
-		((DefaultTableModel) customerShoppingAccount.getModel()).setRowCount(0);
-
-		try {
-			PreparedStatement statement = (PreparedStatement) DBConnection.connection
-					.prepareStatement("SELECT Invoice_Numebr,Invoice_Cost,Date_And_Time "
-							+ "FROM `customer_shopping_account`");
-			ResultSet result = statement.executeQuery();
-
-			while (result.next()) {
-				invoiceNumber = result.getInt(1);
-				invoiceCost = result.getDouble(2);
-				dateAndTime = result.getString(3);
-				CustomerShoppingAccount.shoppingList
-						.add(new CustomerShoppingAccount(invoiceNumber,
-								invoiceCost, dateAndTime));
-				((DefaultTableModel) customerShoppingAccount.getModel())
-						.addRow(new String[] {
-								customerShoppingAccount.getRowCount() + 1 + "",
-								invoiceNumber + "", invoiceCost + "",
-								dateAndTime });
-
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public static void main(String[] args) {
-		long time = System.currentTimeMillis();
-
-		Calendar cal = Calendar.getInstance();
-
-		cal.setTimeInMillis(time);
-
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH);
-		int day = cal.get(Calendar.DAY_OF_MONTH);
-
-		System.out.println(time);
-
-		int option = JOptionPane.showConfirmDialog(null, "Ok/NO/Cancel",
-				"ttitle", JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE, null);
-		if (option == JOptionPane.YES_OPTION)
-			;
-		else if (option == JOptionPane.NO_OPTION)
-			;
-		else if (option == JOptionPane.CANCEL_OPTION)
-			;
-
-	}
+	
 
 }
