@@ -10,30 +10,27 @@
 *  Masoud    20545
 
 **Advisor: Shafi Tokhi**
+
 **Team Leader: Mustafa Mohammadi**
 
 This full report is divided into four sections or steps 
 
 
-1-  Recap of Full Report  #1 
-2-  Interaction diagrams 
-3-	Class diagrams and system architecture 
-4-	New added tasks to the IBMS porject 
+**1.  Recap of Full Report #1** 
 
-###1-    Recap of Full report #1###
+**2.  Interaction diagrams**
 
+**3.	 Class diagrams and system architecture** 
 
- Industry Business Management System (IBMS) 
+**4. 	New added tasks to the IBMS porject**
+
+1-    Recap of Full report #1
 =============================================
 
+##Industry Business Management System (IBMS)##
 
 
-
-**Advisor: Shafi Tokhi**
-
-**Team Leader: Mustafa Mohammadi**
-
-###Submitted in Partial Fulfillment of the Requirements of Industerial Business Management System (IBMS) project###
+####Submitted in Partial Fulfillment of the Requirements of Industerial Business Management System (IBMS) project####
 
 **25th   -   May  -   2013**
 ##Preface##
@@ -138,7 +135,7 @@ The rents for the under protected areas or places are mainly divided into three 
 
 
 
-#Statement of work and requirement#
+##Statement of work and requirement##
 
 
 This project covers all accounting and management aspects of an industrial company that will be produced in two versions.
@@ -154,8 +151,8 @@ Our program will solve the points that were written in the proposal, and we are 
 
 
 
-IBMS Functional Requirement Specification and UI
-================================================
+##IBMS Functional Requirement Specification and UI##
+
 In this project we have three main use cases, which they are consist of:
 1. Stock
 --------
@@ -304,27 +301,32 @@ In here also we can add or remove any new or added subject to/from the list.
 
 
 
-###2- Interaction Diagrams ###
-
-
-#Requirement#
+2- Interaction Diagrams 
+====================
+Requirement
+--------------------
 The first iteration is divided into two main Use Cases which are meterial list and stock list and each one is divided into sub-use cases.
 **Meterial Use case :**This use case is divided into two sub use cases  edite and report.
 
 →Edite: Which edites, adds, deletes meterials. 
+
 →Report: Which prints out the report of the meterials into PDF or hard copy.
-***Stock list :*** This use case is divided into three sub use cases editing , report and transiction.
+
+***Stock list :*** This use case is divided into three sub use cases editing , report and transaction.
+
 →Edite: Which adds and edites the stock list.
+
 →Report: Which prints out the report of the stock into PDF file and hard copy.
+
 →Transiction: Which shows date of store and sold material from sell factor
 
 **Material list REQ:**
 
-|  REQ#              |  Requirement                                    |
-| :------------        | :-----------                                    |
-|REQ1                 |  System must have a list of materials that can use this list to the stock and sell factor and know what materials company have |
-|REQ2                |  System must store a list of new materials that add in to the company recently |
-| REQ3              |   System must delete old material from list when commanded |
+|  REQ#             |  Requirement                                    |
+| :------------     | :-----------                                    |
+|REQ1               |  System must have a list of materials that can use this list to the stock and sell factor and know what materials company have |
+|REQ2               |  System must store a list of new materials that add in to the company recently |
+|REQ3               |   System must delete old material from list when commanded |
 |REQ4               |  System must edit existent material from list when commanded |
 |REQ5               |   System shall maintain report from material list |
 
@@ -338,54 +340,59 @@ List must use material name to sell factor and stock
 ###Use Cases###
 **Material list:**
 
-| Actor        | Actor goal           |  Use case name           |
-| :------------ | :-----------       | :-------------------     |
+| Actor         | Actor goal           |  Use case name           |
+| :------------ | :-----------         | :-------------------     |
 |User (officer) | Create a list and able to add, edit and delete materials to list  |  UC_1 {Editing(Add, Delete, Edit)_1} |
-|User (officer)  |  Print or report material list | UC_2 (report) |
+|User (officer) |  Print or report material list | UC_2 (report) |
 
 **Use Case Details**
 
-| UC-1 Editing (Add,Delete,Edit)   |                           |
-| :------------                    | :-----------              |
-|Reqirements related    |    REQ2,REQ3,REQ4                    |
-|Initiating Actor      |   Officer                            |
-|Actor‚Äôs Goal          | Add element, edit element, delete element |
-|Participating Actor   |  ……………   |
+| UC-1 Editing (Add,Delete,Edit)   |                               |
+| :------------        | :-----------                              | 
+|Reqirements related   |    REQ2,REQ3,REQ4                         |
+|Initiating Actor      |   Officer                                 |
+|Actor Goal            | Add element, edit element, delete element |
+|Participating Actor   | ......                        |
 | Peconditioning       | ID auto increament , DataBase |
-|Postconditioning      | View, refresh the list  |
+|Postconditioning      | View, refresh the list        |
 
-|**Flow of Event for Main Success Scenario**              |
-| :------------                                                 |
-|→ Add meterial to list                    |
+
+|**Flow of Event for Main Success Scenario**                |
+| :------------                                             |
+|→ Add meterial to list                                     |
 | ← Add name, add unit, add total price, add selling price |
-| →  Delete meterial from list                 |
-| ← Enter the name                  |
-| →Edit meterial                |
-| ← Name, unit, total price, selling price  |
+| →  Delete meterial from list                              |
+| ← Enter the name                                         |         
+| →Edit meterial                                            |
+| ← Name, unit, total price, selling price                 |
 
-|  UC-2 Reporting (Printing)                                    |
-| :------------                                                 |
-|Reqirement related                                | REQ1, REQ5 |
-|Initiating Actor    | Officer                |
-|Actor‚Äôs Goal        |   To make a print of the report   |
-|Participating Actor | .......                 |
-|Preconditioning     | Meterials should be added to the database |
-|Postconditioning    |Print out the report to PDF or hardcopy    |
-|Flow of Event for Main Success Scenario                         |
-| → Print the report                                            |
-| ← Print the whole report ?                                    |
+
+|  UC-2 Reporting (Printing)  |                           |
+| :------------               | :-----------              |
+|Reqirement related           | REQ1, REQ5                |
+|Initiating Actor             | Officer                   |
+|Actor Goal                   | To make a print of the report             |
+|Participating Actor          | .......                                   |
+|Preconditioning              | Meterials should be added to the database |
+|Postconditioning             |Print out the report to PDF or hardcopy    |
+
+
+|Flow of Event for Main Success Scenario          |
+| :------------                                   |
+| → Print the report                              |
+| ← Print the whole report ?                     |
 
 
 **Stock list requrements :**
 
-|  REQ#              |  Requirement                                    |
-| :------------        | :-----------                                    |
+|  REQ#                |  Requirement                                     |
+| :------------        | :-----------                                     |
 |REQ1 |System must know Quantity of existent material in the in the stock |
-|REQ2 | System shall edite existence material |
-| REQ3| System shall keep new  material to list of stock |
+|REQ2 | System shall edite existence material                    |
+|REQ3 | System shall keep new  material to list of stock         |
 |REQ4 | System must use date of stored material from sell factor |
-|REQ5 | System must use date of sold material from sell factor |
-|REQ6 | System shall maintain report from stock list           |
+|REQ5 | System must use date of sold material from sell factor   |
+|REQ6 | System shall maintain report from stock list             |
 
 ###Stock list of User Stories###
 **Stock list:**
@@ -396,58 +403,66 @@ As an user (officer) can see the date of stored and sold materials
 
 **Use Cases**
 
-| Actor        | Actor goal           |  Use case name           |
-| :------------ | :-----------       | :-------------------     |
-|User (officer) | Create a list of stored materials to stock and able to edit  |  UC_3 {Editing(Add, Edit)_2} |
-|User (officer)  | Print or report stock list | UC_4 (report) |
-|User (officer)  | Take date of store and sold material from sell factor | UC_5(transition) |
+| Actor          | Actor goal                     |  Use case name              |
+| :------------  | :-----------                   | :-------------------        |
+|User (officer)  | Create a list of stored materials to stock and able to edit  |  UC_3 {Editing(Add, Edit)_2} |
+|User (officer)  | Print or report stock list     | UC_4 (report)               |
+|User (officer)  | Take date of store and sold material from sell factor        | UC_5(transition)             |
+
 
 **Use Case Details**
 
-|  UC_3(Editing)                                   |
-| :------------                                    |
-|Related requirem‚Äôts:   |  REQ1 ‚Äì REQ2 - REQ3      |
-|Initiating Actor:      |  Officer                 |
-|Actor‚Äôs Goal:          |  To add new materials to stock list |
-|Participating Actors:  | --------                 |
+|  UC_3(Editing)        |                                                     |
+| :------------         | :-----------                                        |
+|Related requirem:      |  REQ1 ‚ REQ2 - REQ3                                 |
+|Initiating Actor:      |  Officer                                            |
+|Actor Goal:            |  To add new materials to stock list                 |
+|Participating Actors:  | --------                                            |
 |Preconditions:         | Auto increment ID number for each list and database |
-|Postconditions:        | Update list to the database after editing |
-|Flow of Events for Main Success Scenario:         |
-| → : officer add new material to stock list  |
+|Postconditions:        | Update list to the database after editing           |
+
+|Flow of Events for Main Success Scenario:                      |
+| :------------                                                 |
+| → : officer add new material to stock list                    |
 | ← : system take new material type, quantity and add material to stock list |
-| ← : system update stock list  |
+| ← : system update stock list                |
 | ← : take auto increment  ID to new material |
 
-| UC_4(Transition)                                  |
-| :------------                                    |
-|Related requirem‚Äôts:   | REQ3 ‚Äì REQ4       |
-|Initiating Actor:      | Officer           |
-|Actor‚Äôs Goal:          | To take date of store and date of sold |
-|Participating Actors:  | --------       |
-|Preconditions:         | Stock list must have materials and database non-empty |
-|Postconditions:        | Update list to the database  |
-|  Flow of Events for Main Success Scenario:              |
-| → : officer request date of stored material             |
-| ← : system represent date of stored material   |
-| → : officer date of sold material      |
-| ← : system represent date of sold material   |
 
-| UC_4(Report)                                 |
+| UC_4(Transition)      |                                                       |
+| :------------         | :-----------                                          |
+|Related requirement:   | REQ3 ‚ REQ4                                           |
+|Initiating Actor:      | Officer                                               |
+|Actor's Goal:          | To take date of store and date of sold                |
+|Participating Actors:  | ........                                              |
+|Preconditions:         | Stock list must have materials and database non-empty |
+|Postconditions:        | Update list to the database                           |
+
+|  Flow of Events for Main Success Scenario:              |
+| :------------                                           |
+| → : officer request date of stored material             |
+| ← : system represent date of stored material           | 
+| → : officer date of sold material                       |
+| ← : system represent date of sold material             |
+
+
+| UC_4(Report)           |                           |
+| :------------          | :-----------              |
+|Related requirements:   | REQ5                      |
+|Initiating Actor:       | Officer                   |
+|Actor‚ Goal:            | To print list             |
+|Participating Actors:   | ........                  |
+|Preconditions:          | List  database non-empty  |
+|Postconditions:         | Present report as a PDF file of Print list in to a paper |
+
+|  Flow of Events for Main Success Scenario:       |
 | :------------                                    |
-|Related requirem‚Äôts:   | REQ5            |
-|Initiating Actor:      | Officer           |
-|Actor‚Äôs Goal:          | To print list     |
-|Participating Actors:  | --------       |
-|Preconditions:         | List  database non-empty |
-|Postconditions:        | Present report as a PDF file of Print list in to a paper |
-|  Flow of Events for Main Success Scenario:              |
-| → : Officer request report of list             |
+| → : Officer request report of list               |
 | ← : verify list is not empty and present list   |
-|  Flow of Events for Main Success Scenario:              |
 | → : officer request date of stored material      |
-| ← : system represent date of stored material   |
-| → : officer date of sold material      |
-| ← : system represent date of sold material   |
+| ← : system represent date of stored material    |
+| → : officer date of sold material                |
+| ← : system represent date of sold material      |
 
 
 
@@ -555,8 +570,8 @@ h.    Officer must to be able to see the changes in the selected customer accoun
 
 **UseCase 3: Customer Edition**
 
-Title               |  Description            |
-| :------------     | :-----------            |
+Title                    |  Description            |
+| :------------          | :-----------            |
 |Related Requirements    |   REQ3               |
 |Initiating Actors       |  Officer, Data base  | 
 |Actor's Goal            |  To edit the added customer profissions from the list.    |
@@ -623,154 +638,184 @@ Title               |  Description            |
 
 **User Stories (corruption)**
 
-1. The corruption is divided in four main parts (Machinery, Building, precinct and sundries). The officer must be able to go to every part by clicking that.
-2. The officer must be able to add something to the list every part.
-3. The officer must be able to remove somthing from the list every part.
-4. Officer must see the total amount of every part.
-5. The officer must be able to edit the list.
-6. The officer must be able to print the list.
+1.  The corruption is divided in four main parts (Machinery, Building, precinct and sundries). The officer must be able to go to every part by clicking that.
+
+3.  The officer must be able to remove somthing from the list every part.
+
+4.  Officer must see the total amount of every part.
+
+5.  The officer must be able to edit the list.
+
+6.  The officer must be able to print the list.
 
 **User Stories (Buying Raw Material)**
+
 1. The officer must be able to add something to the list.
+
 2. The officer must be able to remove something to the list.
+
 3. The officer must be able to add a new Kind of Raw material.
+
 4. The officer must be able to see the total amount of Bought material dynamically
+
 5. The officer must be able to edit the list.
+
 6. The officer must be able to print the list.
 
 **User Stories(Necessities)**
-1. The officer must be able to add something to the list.
-2. The officer must be able to remove something to the list.
-5. The officer must be able to edit the list.
-6. The officer must be able to print the list.
+
+1.  The officer must be able to add something to the list.
+
+2.  The officer must be able to remove something to the list.
+
+5.  The officer must be able to edit the list.
+
+6.  The officer must be able to print the list.
 
 **User Stories(Company Consumption)**
-1. Company consumption is divided in five main part (water, electricity, gas, phone and internet). The officer must be able to access every part.
-2. add something to the list of every part.
-3. Remove something to the list of every part.
-5. The officer must be able to edit the list.
-6. The officer must be able to print the list.
-5. The officer must see the total amount of all bells of the list dynamically.
+
+1.  Company consumption is divided in five main part (water, electricity, gas, phone and internet). The officer must be able to access every part.
+
+2.  add something to the list of every part.
+
+3.  Remove something to the list of every part.
+
+5.  The officer must be able to edit the list.
+
+6.  The officer must be able to print the list.
+
+5.  The officer must see the total amount of all bells of the list dynamically.
 
 **Requirments**
 ***Corruption*** 
 
-| Req NO               |  Activity        |    Description  |
-| :------------        | :-----------       | :----------- |
+| Req NO               |  Activity         |    Description  |
+| :------------        | :-----------      | :-----------    |
 |Req 1                 |  Access the tubs  |
 |Req 2                 |   Add something   |
 |Req 3                 |  Remove something |
-|Req 4                 |    edit the list     |
-|Req 5                 |   print the list |
-|Req 6                 |  Total amount    |
+|Req 4                 |    edit the lis   |
+|Req 5                 |   print the list  |
+|Req 6                 |  Total amount     |
+
 
 **Buying Raw Material**
 
-| Req NO               |  Activity        |    Description  |
-| :------------        | :-----------       | :----------- |
-|Req 1                 |  add something   |
+| Req NO               |  Activity          |    Description  |
+| :------------        | :-----------       | :-----------    |
+|Req 1                 |  add something     |
 |Req 2                 |  Remove somthing   |
-|Req 3                 | Add a new Kind of Raw material|
-|Req 4                 |    Total amount     |
+|Req 3                 | Add a new Kind of Raw material       |
+|Req 4                 |    Total amount                      |
 
 **Necessities**
 
-| Req NO               |  Activity        |    Description  |
-| :------------        | :-----------       | :----------- |
-|Req 1                 |  add something   |
+
+| Req NO               |  Activity          |    Description  |
+| :------------        | :-----------       | :-----------    |
+|Req 1                 |  add something     |
 |Req 2                 |  Remove somthing   |
-|Req 3                 | Edit the list   |
-|Req 4                 |   print the list     |
+|Req 3                 | Edit the list      |
+|Req 4                 |   print the list   |
+
 
 **Company consumption**
 
-| Req NO               |  Activity        |    Description  |
-| :------------        | :-----------       | :----------- |
+| Req NO               |  Activity         |    Description  |
+| :------------        | :-----------      | :-----------    |
 |Req 1                 |  Access the tubs  |
 |Req 2                 |   Add something   |
 |Req 3                 |  Remove something |
-|Req 4                 |    Total amount     |
-|Req 5                 |   Edit the list |
-|Req 6                 | print the listt    |
+|Req 4                 |    Total amount   |
+|Req 5                 |   Edit the list   |
+|Req 6                 | print the listt   |
 
 **Use cases**
-|No.            | name		     |    Descipiton   |
-| :------------ | :------------  | :------------  |
-|1            | corruption       |               |
-|2             |Buying raw material|               |   
-|3            | necessity        |            |
-|4              |company consumption |        |
+
+|No.            | name		             |    Descipiton |
+| :------------ | :------------      | :------------ |
+|1              | corruption         |               |
+|2              |Buying raw material |               |   
+|3              | necessity          |               |
+|4              |company consumption |               |
 
 
 **Detail Usecase**
-
 ***Use Case UC-1: Corruption Related***
 
-|Title                 |  Description                    |
-| :------------        | :-----------                    |
-| Requirements  |  REQ1, REQ2, REQ3,REQ4,REQ5 and REQ6  |
-|Initiating Actor:    |   Officer        |
-|Actor's Goal          |  To see the total amount of the raw material bought so far and a record of all the bells.  |
-|Participatig  |        |
-|Actors       |      Officer  |
-|Preconditions         | First the officer must open the interface to add ,remove,edit or print the list.  |
-|PostConditions        |Then save it. The information will be store in the database.   |
+|Title                 |  Description                          |
+| :------------        | :-----------                          |
+| Requirements         |  REQ1, REQ2, REQ3,REQ4,REQ5 and REQ6  |
+|Initiating Actor:     |   Officer                             |
+|Actor's Goal          |  To see the total amount of the raw material bought so far and a record of all the bells. |
+|Participatig          |                                                                                           |
+|Actors                |      Officer                                                                              |
+|Preconditions         | First the officer must open the interface to add ,remove,edit or print the list.          |
+|PostConditions        |Then save it. The information will be store in the database.                               |
+
 |Flow of Events for Main Success Scenario:        |
-| → 1. The officer request for the interface. |
-| ← 2. The system will offer that. |
-| →The officer do the function and save it.  |
+| :------------                                   |
+| → 1. The officer request for the interface.     |
+| ← 2. The system will offer that.               |
+| →The officer do the function and save it.       |
 | ← The system will store the information and send a confirm massage to the user.If it fail a failed massage will be send. |
 
 **Use Case UC-2: Buying Raw Material Related**
 
-|Title                 |  Description                    |
-| :------------        | :-----------                    |
-| Requirements  |  REQ1, REQ2, REQ3,REQ4,REQ5... REQ6   |
-|Initiating Actor:    |   Officer        |
-|Actor's Goal          |  To see the total amount of the raw material bought so far and a record of all the bells.  |
-|Participatig  |        |
-|Actors       |      Officer  |
+|Title                 |  Description                          |
+| :------------        | :-----------                          |
+| Requirements         |  REQ1, REQ2, REQ3,REQ4,REQ5... REQ6   |
+|Initiating Actor:     |   Officer                             |
+|Actor's Goal          |  To see the total amount of the raw material bought so far and a record of all the bells.                       |
+|Participatig          |               |
+|Actors                |      Officer  |
 |Preconditions         | First the officer must open the interface to add ,remove,edit , print the list or add a new raw material item.  |
-|PostConditions        |Then save it. The information will be store in the database.   |
+|PostConditions        |Then save it. The information will be store in the database.                                                     |
+
 |Flow of Events for Main Success Scenario:        |
-| → 1. The officer request for the interface. |
-| ← 2. The system will offer that. |
-| →The officer do the function and save it.  |
+| :------------                                   |
+| → 1. The officer request for the interface.     |
+| ← 2. The system will offer that.               |
+| →The officer do the function and save it.       |
 | ← The system will store the information and send a confirm massage to the user.If it fail a failed massage will be send. |
 
 **Use Case UC-3: Necessity Related**
 
 |Title                 |  Description                    |
 | :------------        | :-----------                    |
-| Requirements  | REQ1, REQ2, REQ3 and REQ4   |
-|Initiating Actor:    |   Officer        |
+| Requirements         | REQ1, REQ2, REQ3 and REQ4       |
+|Initiating Actor:     |   Officer                       |
 |Actor's Goal          |  To see the total amount of the raw material bought so far and a record of all the bells.  |
-|Participatig  |        |
-|Actors       |      Officer  |
+|Participatig          |               |
+|Actors                |      Officer  |
 |Preconditions         |  First the officer must open the interface to add ,remove,edit or print the list.  |
 |PostConditions        |Then save it. The information will be store in the database.   |
+
 |Flow of Events for Main Success Scenario:        |
-| → 1. The officer request for the interface. |
-| ← 2. The system will offer that. |
-| →The officer do the function and save it.  |
+| :------------                                   |
+| → 1. The officer request for the interface.     |
+| ← 2. The system will offer that.               |
+| →The officer do the function and save it.       |
 | ← The system will store the information and send a confirm massage to the user.If it fail a failed massage will be send. |
 
 
 **Use Case UC-4: Company Consumption Related**
 
-|Title                 |  Description                    |
-| :------------        | :-----------                    |
-| Requirements  | REQ1, REQ2, REQ3 , REQ4 and REQ5  |
-|Initiating Actor:    |   Officer        |
+|Title                 |  Description                      |
+| :------------        | :-----------                      |
+| Requirements         | REQ1, REQ2, REQ3 , REQ4 and REQ5  |
+|Initiating Actor:     |   Officer                         |
 |Actor's Goal          |  To see the total amount of the raw material bought so far and a record of all the bells.  |
-|Participatig  |        |
-|Actors       |      Officer  |
+|Participatig          |               |
+|Actors                |      Officer  |
 |Preconditions         |  First the officer must open the interface to add ,remove,edit or print the list.  |
-|PostConditions        |Then save it. The information will be store in the database.   |
+|PostConditions        |Then save it. The information will be store in the database.                        |
+
 |Flow of Events for Main Success Scenario:        |
-| → 1. The officer request for the interface. |
-| ← 2. The system will offer that. |
-| →The officer do the function and save it.  |
+| :------------                                   |
+| → 1. The officer request for the interface.     |
+| ← 2. The system will offer that.               |
+| →The officer do the function and save it.       |
 | ← The system will store the information and send a confirm massage to the user.If it fail a failed massage will be send. |
 
 
@@ -785,11 +830,11 @@ IBMS Main Diagrmas
 
 **Activation Diagram**
 
-![IBMS](http://http://i.imgur.com/gm6UNsy.jpg "IBMS Activation Diagram") ![IBMS](http://i.imgur.com/pOWZgEf.jpg "IBMS Activation Diagram") ![IBMS](http://i.imgur.com/0t4YeIy.jpg"IBMS Activation Diagram") ![IBMS](http://i.imgur.com/NpAG6bn.jpg "IBMS Activation Diagram") ![IBMS](http://i.imgur.com/Qr49A17.jpg "IBMS Activation Diagram")
+![IBMS](http://i.imgur.com/gm6UNsy.jpg "IBMS Activation Diagram") ![IBMS](http://i.imgur.com/pOWZgEf.jpg "IBMS Activation Diagram") ![IBMS](http://i.imgur.com/0t4YeIy.jpg"IBMS Activation Diagram") ![IBMS](http://i.imgur.com/NpAG6bn.jpg "IBMS Activation Diagram") ![IBMS](http://i.imgur.com/Qr49A17.jpg "IBMS Activation Diagram")
 
 **Sequence Diagram**
 
-![IBMS](http://i.imgur.com/MJ5PHSz.jpg"Sequence Diagram")![IBMS](http://i.imgur.com/BDGNoYe.jpg"Sequence Diagram") ![IBMS](http://i.imgur.com/EtlrG3w.jpg"Sequence Diagram")
+![IBMS](http://i.imgur.com/MJ5PHSz.jpg"Sequence Diagram") ![IBMS](http://i.imgur.com/BDGNoYe.jpg"Sequence Diagram") ![IBMS](http://i.imgur.com/EtlrG3w.jpg"Sequence Diagram")
 
 **Customer account_usecase diagram**
 
