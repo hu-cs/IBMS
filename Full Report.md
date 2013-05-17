@@ -912,7 +912,8 @@ IBMS Main Diagrmas
 
 ![IBMS](http://i.imgur.com/burjBsb.jpg"IBMS Activity Diagram of ADD Function,Remove,Edit and Print")
 
-###3- Class diagrams and system architecture###
+3- Class diagrams and system architecture
+=============================================
 
 ***Table of content***
 
@@ -1013,20 +1014,21 @@ UC_5 (transition)
 ![IBMS](http://i.imgur.com/drKnT1q.jpg"")
 
 
-###4- New added tasks to the IBMS porject### 
+4- New added tasks to the IBMS porject
+=======================================
 
 As it is cancerd to be needed about two other tasks to our project, which are as like 
 
-1-    Print 
+1.   Print 
 
 In this task we are considerd to print out customers’ invoice paper for his/her information.
 
-2-    Search 
+2.   Search 
 
 It is cancerd to search a contents according to ID or Name to the user besides all these, this search is done to find out meterials  of the searched contents. 
 
 ***Note :*** there are  three other steps which are needed to be mentioned here, which are as follow
 
-1-    Validation
-2-	Exception handling 
-3-	Testing 
+1.   Validation
+2.  	Exception handling 
+3.	  Testing 
