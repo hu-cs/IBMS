@@ -2,12 +2,10 @@
 
 ***As according to the project managing of a software life cycle, we are informed to make the second full report of our IBMS project,  to gather all our project report from our sub-groups and their reports and activities together,  since there are three sub-groups in our IBMS project as they are as follow***
 
-####Team Members####
-*  Mustafa Mohammadi 20595
-*  Tamim Saeedi 20606
-*  Mohebullah Forough 20675
-*  Shuaib Matin   20719
-*  Masoud    20545
+1.  Shoaib and Mohebullah ( 1st Group )
+2.	Mustafa and Tamim ( 2nd Group )
+3.	Massoud ( 3rd Group )
+
 
 **Advisor: Shafi Tokhi**
 
@@ -1019,11 +1017,11 @@ UC_5 (transition)
 
 As it is cancerd to be needed about two other tasks to our project, which are as like 
 
-1.   Print 
+1-  Print 
 
 In this task we are considerd to print out customers’ invoice paper for his/her information.
 
-2.   Search 
+2-  Search 
 
 It is cancerd to search a contents according to ID or Name to the user besides all these, this search is done to find out meterials  of the searched contents. 
 
