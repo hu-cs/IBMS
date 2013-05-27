@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,10 +10,14 @@ import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import org.jdesktop.swingx.JXDatePicker;
 
@@ -48,7 +53,24 @@ public class PrintBtn implements ActionListener, Printable {
 
 	private JFrame interfaceCreation() {
 
+		JPanel mainPanel = new JPanel(new BorderLayout());
+		mainPanel.setOpaque(false);
+		mainPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
+
 		JTable table = new JTable(this.table.getModel());
+		table.setDefaultEditor(Object.class, new DefaultCellEditor(
+				new JTextField()) {
+			{
+				((JTextField) getComponent())
+						.setHorizontalAlignment(SwingConstants.RIGHT);
+			}
+		});
+
+		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			{
+				setHorizontalAlignment(SwingConstants.RIGHT);
+			}
+		});
 		scroll = new JScrollPane();
 		scroll.setViewportView(table);
 
@@ -67,38 +89,30 @@ public class PrintBtn implements ActionListener, Printable {
 		// /================================
 
 		JPanel northenPanel = new JPanel(new BorderLayout());
+		northenPanel.setOpaque(false);
 
 		JPanel companyDescriptionPanel = new JPanel();
 		northenPanel.add(companyDescriptionPanel, BorderLayout.NORTH);
 		companyDescriptionPanel.setLayout(new BorderLayout(0, 0));
+		companyDescriptionPanel.setOpaque(false);
 
 		JPanel companyIdentification = new JPanel();
+		companyIdentification.setOpaque(false);
 		companyDescriptionPanel.add(companyIdentification, BorderLayout.EAST);
-		companyIdentification
-				.setLayout(new FormLayout(
-						new ColumnSpec[] {
-								ColumnSpec.decode("max(221dlu;default):grow"),
-								FormFactory.RELATED_GAP_COLSPEC,
-								ColumnSpec.decode("max(20dlu;default)"),
-								FormFactory.RELATED_GAP_COLSPEC,
-								FormFactory.DEFAULT_COLSPEC,
-								ColumnSpec.decode("13px"),},
-							new RowSpec[] {
-								RowSpec.decode("max(7dlu;default)"),
-								FormFactory.DEFAULT_ROWSPEC,
-								FormFactory.RELATED_GAP_ROWSPEC,
-								FormFactory.DEFAULT_ROWSPEC,
-								FormFactory.RELATED_GAP_ROWSPEC,
-								FormFactory.DEFAULT_ROWSPEC,
-								FormFactory.RELATED_GAP_ROWSPEC,
-								FormFactory.DEFAULT_ROWSPEC,
-								FormFactory.RELATED_GAP_ROWSPEC,
-								RowSpec.decode("26px"),
-								RowSpec.decode("max(15dlu;default)"),
-								FormFactory.RELATED_GAP_ROWSPEC,
-								FormFactory.DEFAULT_ROWSPEC,
-								FormFactory.RELATED_GAP_ROWSPEC,
-								RowSpec.decode("14px"),}));
+		companyIdentification.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("max(221dlu;default):grow"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(20dlu;default)"),
+				FormFactory.RELATED_GAP_COLSPEC, FormFactory.DEFAULT_COLSPEC,
+				ColumnSpec.decode("13px"), }, new RowSpec[] {
+				RowSpec.decode("max(7dlu;default)"),
+				FormFactory.DEFAULT_ROWSPEC, FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC, FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC, FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC, FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("26px"), RowSpec.decode("max(15dlu;default)"),
+				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC, RowSpec.decode("14px"), }));
 
 		JLabel addressDescription = new JLabel(
 				" هرات، شهرک صنعتی، فاز سوم، خیابان مرسل، مرسل1");
@@ -107,35 +121,38 @@ public class PrintBtn implements ActionListener, Printable {
 				"1, 2, 3, 1, right, default");
 
 		JPanel theInvoicePanel = new JPanel();
+		theInvoicePanel.setOpaque(false);
 		companyIdentification.add(theInvoicePanel, "1, 13, right, fill");
 		theInvoicePanel.setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("max(122dlu;default)"),
-				ColumnSpec.decode("67px"),
-				ColumnSpec.decode("27px"),
-				ColumnSpec.decode("63px"),},
+				ColumnSpec.decode("max(115dlu;default):grow"),
+				ColumnSpec.decode("116px:grow"),
+				ColumnSpec.decode("27px:grow"),
+				ColumnSpec.decode("63px:grow"),},
 			new RowSpec[] {
 				FormFactory.LINE_GAP_ROWSPEC,
 				RowSpec.decode("14px"),}));
+
 		dateString.getDate().setTime(System.currentTimeMillis());
-		JLabel theDateValueLabel = new JLabel(dateString.getDate().toLocaleString());
-		theInvoicePanel.add(theDateValueLabel, "1, 2, center, default");
-		
-		JLabel dateLabel = new JLabel("تاریخ:");
-		theInvoicePanel.add(dateLabel, "2, 2, center, default");
-		
+		JLabel theDateValueLabel = new JLabel(dateString.getDate()
+				.toLocaleString());
+		theInvoicePanel.add(theDateValueLabel, "1, 2, right, default");
+
+		JLabel dateLabel = new JLabel("  تاریخ : ");
+		theInvoicePanel.add(dateLabel, "2, 2, left, default");
+
 		JLabel theInvoiceValueNumber = new JLabel(invoiceNumber.getText());
-		theInvoicePanel.add(theInvoiceValueNumber, "3, 2, center, top");
-		
+		theInvoicePanel.add(theInvoiceValueNumber, "3, 2, right, default");
+
 		JLabel theInvoiceNumber = new JLabel("شماره فاکتور:");
 		theInvoicePanel.add(theInvoiceNumber, "4, 2, right, top");
 
-		JLabel customerComboBox = new JLabel(customerList.getSelectedItem().toString());
+		JLabel customerComboBox = new JLabel(customerList.getSelectedItem()
+				.toString());
 		companyIdentification.add(customerComboBox, "3, 13, right, center");
 
 		JLabel customerLabel = new JLabel("مشتری محترم:");
 		customerLabel.setFont(new Font("2  Narenj", Font.PLAIN, 16));
 		companyIdentification.add(customerLabel, "5, 13, right, center");
-
 
 		JLabel addressLabel = new JLabel("آدرس:");
 		addressLabel.setFont(new Font("2  Narenj", Font.PLAIN, 16));
@@ -153,9 +170,9 @@ public class PrintBtn implements ActionListener, Printable {
 				.toString());
 		companyIdentification.add(customerName, "3, 13, right, center");
 
-//		JLabel customerLabel = new JLabel("مشتری محترم:");
-//		customerLabel.setFont(new Font("2  Narenj", Font.PLAIN, 16));
-//		companyIdentification.add(customerLabel, "5, 13, right, center");
+		// JLabel customerLabel = new JLabel("مشتری محترم:");
+		// customerLabel.setFont(new Font("2  Narenj", Font.PLAIN, 16));
+		// companyIdentification.add(customerLabel, "5, 13, right, center");
 
 		JLabel companyNameLabel = new JLabel("شرکت صنایع پلاستیک شکوفه بهار");
 		companyNameLabel.setPreferredSize(new Dimension(158, 25));
@@ -164,17 +181,17 @@ public class PrintBtn implements ActionListener, Printable {
 		companyDescriptionPanel.add(companyNameLabel, BorderLayout.NORTH);
 
 		JPanel imageAndDatePanel = new JPanel();
+		imageAndDatePanel.setOpaque(false);
 		companyDescriptionPanel.add(imageAndDatePanel, BorderLayout.WEST);
-		imageAndDatePanel.setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(140dlu;default)"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.LINE_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+		imageAndDatePanel.setLayout(new FormLayout(
+				new ColumnSpec[] { FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+						FormFactory.DEFAULT_COLSPEC,
+						FormFactory.RELATED_GAP_COLSPEC,
+						ColumnSpec.decode("max(140dlu;default)"),
+						FormFactory.RELATED_GAP_COLSPEC,
+						FormFactory.DEFAULT_COLSPEC, }, new RowSpec[] {
+						FormFactory.LINE_GAP_ROWSPEC,
+						FormFactory.DEFAULT_ROWSPEC, }));
 
 		JLabel logoLabel = new JLabel("");
 		imageAndDatePanel.add(logoLabel, "4, 2, left, top");
@@ -182,13 +199,15 @@ public class PrintBtn implements ActionListener, Printable {
 		logoLabel.setAlignmentX(5.0f);
 		logoLabel.setIcon(new ImageIcon("D:/Company/ShokufaBaharLogo.png"));
 
-//		JLabel theDateValueLabel = new JLabel(dateString.getDate().toLocaleString());
-//		imageAndDatePanel.add(theDateValueLabel, "4, 5");
+		// JLabel theDateValueLabel = new
+		// JLabel(dateString.getDate().toLocaleString());
+		// imageAndDatePanel.add(theDateValueLabel, "4, 5");
 
-//		JLabel theDate = new JLabel("تاریخ:");
-//		imageAndDatePanel.add(theDate, "6, 5");
+		// JLabel theDate = new JLabel("تاریخ:");
+		// imageAndDatePanel.add(theDate, "6, 5");
 
 		JPanel totalAndSigmaturPanel = new JPanel();
+		totalAndSigmaturPanel.setOpaque(false);
 		totalAndSigmaturPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		totalAndSigmaturPanel.setAlignmentX(SwingConstants.RIGHT);
 
@@ -259,15 +278,17 @@ public class PrintBtn implements ActionListener, Printable {
 		totalAndSigmaturPanel.add(customerSignatureLabel, "34, 6");
 
 		// mainFrame.add(datePanel, BorderLayout.SOUTH);
-		mainFrame.add(northenPanel, BorderLayout.NORTH);
-		mainFrame.add(scroll);
-		mainFrame.setSize(757,
-				(int) (frame.getSize().getHeight() + 11));
-		System.out.println(frame.getSize().getHeight() + totalAndSigmaturPanel
-						.getSize().getHeight());
+		mainPanel.add(northenPanel, BorderLayout.NORTH);
+		mainPanel.add(scroll);
+		mainPanel.setBorder(new LineBorder(Color.black));
+
+		mainFrame.add(mainPanel);
+		mainFrame.setSize(757, (int) (frame.getSize().getHeight() +22));
+		System.out.println(frame.getSize().getHeight()
+				+ totalAndSigmaturPanel.getSize().getHeight());
 		System.out.println(frame.getSize().getHeight());
 		System.out.println(totalAndSigmaturPanel.getHeight());
-//		mainFrame.setSize(757, 350);
+		// mainFrame.setSize(757, 350);
 		// mainFrame.setVisible(true);
 
 		return mainFrame;
@@ -287,6 +308,7 @@ public class PrintBtn implements ActionListener, Printable {
 
 		boolean ok = job.printDialog();
 		// mainFrame.setContentPane(mainPanel);
+		mainFrame.getContentPane().setBackground(Color.WHITE);
 		mainFrame.setVisible(true);
 		if (ok) {
 			try {

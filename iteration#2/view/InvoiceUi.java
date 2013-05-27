@@ -15,7 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
@@ -31,6 +33,7 @@ import com.mysql.jdbc.PreparedStatement;
 import controller.AddRowButtonListener;
 import controller.CancelButtonListener;
 import controller.ComboboxListener;
+import controller.DataYearId;
 import controller.DeleteRow;
 import controller.InvoiceChanges;
 import controller.PrintBtn;
@@ -47,6 +50,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.EventObject;
 
 import model.Customer;
 import model.Invoice;
@@ -54,6 +58,7 @@ import model.Material;
 
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.event.CellEditorListener;
 
 public class InvoiceUi extends JFrame {
 
@@ -129,7 +134,7 @@ public class InvoiceUi extends JFrame {
 		JPanel companyIdentification = new JPanel();
 		companyDescriptionPanel.add(companyIdentification, BorderLayout.EAST);
 		companyIdentification.setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("max(187dlu;default):grow"),
+				ColumnSpec.decode("max(157dlu;default):grow"),
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("max(20dlu;default)"),
 				FormFactory.RELATED_GAP_COLSPEC, FormFactory.DEFAULT_COLSPEC,
@@ -195,8 +200,9 @@ public class InvoiceUi extends JFrame {
 		companyDescriptionPanel.add(imageAndDatePanel, BorderLayout.WEST);
 		imageAndDatePanel.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC, FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC, FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(9dlu;default)"),
+				FormFactory.RELATED_GAP_COLSPEC, FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("max(39dlu;default)"), }, new RowSpec[] {
 				FormFactory.LINE_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
 				RowSpec.decode("8dlu"), RowSpec.decode("max(11dlu;default)"),
@@ -212,7 +218,7 @@ public class InvoiceUi extends JFrame {
 		JXDatePicker datePicker = new JXDatePicker();
 		imageAndDatePanel.add(datePicker, "4, 4");
 
-		JLabel dateLabel = new JLabel("تاریخ:");
+		JLabel dateLabel = new JLabel(" تاریخ:  ");
 		imageAndDatePanel.add(dateLabel, "6, 4");
 		JPanel invoiceTablePanel = new JPanel(new BorderLayout());
 		// ============================================
@@ -242,6 +248,20 @@ public class InvoiceUi extends JFrame {
 		scrollPane.setViewportView(table);
 
 		TableColumn nameColumn = table.getColumnModel().getColumn(4);
+		table.setDefaultEditor(Object.class, new DefaultCellEditor(
+				new JTextField()) {
+			{
+				((JTextField) getComponent())
+						.setHorizontalAlignment(SwingConstants.RIGHT);
+			}
+
+		});
+
+		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			{
+				setHorizontalAlignment(SwingConstants.RIGHT);
+			}
+		});
 
 		northenPanel.add(invoiceTablePanel, BorderLayout.SOUTH);
 		nameColumn.setCellEditor(new DefaultCellEditor(materialList));
@@ -250,7 +270,6 @@ public class InvoiceUi extends JFrame {
 			tempCombobox.addItem(materialList.getItemAt(i));
 		}
 
-		String dateString = "";
 		// Setting action listener
 
 		okButton.addActionListener(new InvoiceChanges(invocieNumebrLabel,
@@ -261,10 +280,9 @@ public class InvoiceUi extends JFrame {
 				invoiceTotalValueLabel, table));
 
 		addRowButton.addActionListener(new AddRowButtonListener(table, this));
-		deleteRowButton.addActionListener(new DeleteRow(table, this));
+		deleteRowButton.addActionListener(new DeleteRow(table, this,
+				invoiceTotalValueLabel));
 		cancelButton.addActionListener(new CancelButtonListener(this));
-
-		dateString = datePicker.getEditor().getText();
 
 		print.addActionListener(new PrintBtn(table, datePicker,
 				customerComboBox, invocieNumebrLabel, invoiceTotalValueLabel,
@@ -293,7 +311,8 @@ public class InvoiceUi extends JFrame {
 			PreparedStatement statement = (PreparedStatement) DBConnection.connection
 					.prepareStatement("SELECT Name,Last_Name,Father_Name,"
 							+ "Address,Shopping_Account,Giving_Money_Account"
-							+ ",Company_demand FROM customer_list");
+							+ ",Company_demand FROM customer_list where DataYearId ="
+							+ DataYearId.getDataYearId());
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				String name = result.getString(1);
@@ -372,6 +391,8 @@ public class InvoiceUi extends JFrame {
 
 	public static void main(String[] args) {
 		new InvoiceUi();
+		JComboBox<Material>a = new JComboBox<Material>();
+		
 	}
 
 }

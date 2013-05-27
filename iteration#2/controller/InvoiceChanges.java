@@ -59,15 +59,21 @@ public class InvoiceChanges implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		createInvoiceObjects();
-		stockSubtraction();
-		if (stockSubtraction() == -1)
-			return;
-		addToCustomerAccount();
-		addToSellHistory();
-		changeTheSoldMaterialList();
-		saveInvoice();
-		invoiceFrame.setVisible(false);
+		if (invoiceDate() != null) {
+			if (validate() != -1) {
+				createInvoiceObjects();
+				stockSubtraction();
+				if (stockSubtraction() == -1)
+					return;
+				addToCustomerAccount();
+				addToSellHistory();
+				changeTheSoldMaterialList();
+				saveInvoice();
+				invoiceFrame.setVisible(false);
+			}
+
+		}
+
 		// invoiceFrame.disable();TODO close the window
 	}
 
@@ -87,7 +93,7 @@ public class InvoiceChanges implements ActionListener {
 		Stock.stockMaterialList.add(new StockMaterial("sabad picnick", "jin",
 				200));
 
-		int dataYearId = DataYearId.yearId;
+		int dataYearId = DataYearId.getDataYearId();
 		InvoiceMaterial tempMaterial;
 		for (Integer mapCounter : Invoice.materils.keySet()) {
 			tempMaterial = Invoice.materils.get(mapCounter);
@@ -129,8 +135,6 @@ public class InvoiceChanges implements ActionListener {
 
 	}
 
-
-
 	/**
 	 * After the invoice emission, the shopped invoice Materials will be added
 	 * to the Each material sell history list.
@@ -145,8 +149,8 @@ public class InvoiceChanges implements ActionListener {
 
 		String customerName = ((Customer) customers.getSelectedItem())
 				.getName();
-		this.dateAndTime.getDate().setTime(System.currentTimeMillis());
-		String dateAndTime = this.dateAndTime.getDate().toLocaleString();
+
+		String dateAndTime = invoiceDate();
 		int qty;
 		String materialName;
 		// String name = inv
@@ -169,7 +173,7 @@ public class InvoiceChanges implements ActionListener {
 								+ "','"
 								+ dateAndTime
 								+ "',"
-								+ DataYearId.yearId + ")");
+								+ DataYearId.getDataYearId() + ")");
 				// statement.setInt(1, DataYearId.yearId);
 
 				statement.execute();
@@ -189,8 +193,7 @@ public class InvoiceChanges implements ActionListener {
 											// the interface
 		int invoiceNum = Integer.parseInt(invoiceNumber.getText());
 		double invoiceCost = Double.parseDouble(invoiceTotalCost.getText());
-		this.dateAndTime.getDate().setTime(System.currentTimeMillis());
-		String dateAndTime = this.dateAndTime.getDate().toLocaleString();
+		String dateAndTime = invoiceDate();
 		String customerName = customers.getSelectedItem().toString();
 		// TODO how to calculate date and time.
 
@@ -199,7 +202,7 @@ public class InvoiceChanges implements ActionListener {
 					.prepareStatement("insert into customer_shopping_account "
 							+ "(Invoice_Numebr,Invoice_Cost,Date_And_Time,DataYearId,Customer_Name) Values("
 							+ invoiceNum + "," + invoiceCost + ",'"
-							+ dateAndTime + "'" + "," + DataYearId.yearId
+							+ dateAndTime + "'" + "," + DataYearId.getDataYearId()
 							+ ",'" + customerName + "')");
 
 			statement.execute();
@@ -241,8 +244,7 @@ public class InvoiceChanges implements ActionListener {
 										+ "set Quantity=" + currentSoldQty
 										+ " where Name = '" + materialName
 										+ "' and DataYearId ="
-										+ DataYearId.yearId);
-
+										+ DataYearId.getDataYearId());
 
 						statement.execute();
 					} catch (SQLException e) {
@@ -278,11 +280,10 @@ public class InvoiceChanges implements ActionListener {
 	}
 
 	private void saveInvoice() {
-		dateAndTime.getDate().setTime(System.currentTimeMillis());
-		String date = dateAndTime.getDate().toLocaleString();
+		String date = invoiceDate();
 		String customer = customers.getSelectedItem().toString();
 		float cost = Float.parseFloat(invoiceTotalCost.getText());
-		int dataYearId = DataYearId.yearId;
+		int dataYearId = DataYearId.getDataYearId();
 		try {
 			PreparedStatement statement = (PreparedStatement) DBConnection.connection
 					.prepareStatement("insert into invoice_list (Cost,Customer,DateAndTime,DataYearId)values("
@@ -302,7 +303,37 @@ public class InvoiceChanges implements ActionListener {
 
 	}
 
+	private int validate() {
 
-	
+		for (int rowCounter = 0; rowCounter < invoiceTable.getRowCount(); rowCounter++) {
+			if (invoiceTable.getValueAt(rowCounter, 0) == null) {
+				new JOptionPane()
+						.showMessageDialog(
+								null,
+								"اطلاعات وارد شده در داخل فاکتور کامل نیست،لطفا اطلاعات را جک نموده دوباره امتحان کنید!");
+				return -1;
+
+			}
+
+		}
+
+		return 0;
+	}
+
+	private String invoiceDate() {
+		String date;
+
+		try {
+			this.dateAndTime.getDate().setTime(System.currentTimeMillis());
+			date = dateAndTime.getDate().toLocaleString();
+			return date;
+		} catch (NullPointerException e) {
+			new JOptionPane().showMessageDialog(null,
+					"اطفا تاریخ را انتخاب کنید!");
+		}
+
+		return null;
+
+	}
 
 }

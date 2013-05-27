@@ -86,7 +86,7 @@ public class Customer {
 	}
 
 	public String toString() {
-		return name;
+		return name + " " + lastName;
 	}
 
 }

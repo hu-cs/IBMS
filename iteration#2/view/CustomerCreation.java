@@ -17,12 +17,16 @@ public class CustomerCreation extends JDialog {
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 
 		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] { { null, null,
-				null }, }, new String[] { "\u0622\u062F\u0631\u0633",
-				"\u0627\u0633\u0645 \u067E\u062F\u0631",
-				"\u0627\u0633\u0645 \u0648 \u0634\u0647\u0631\u062A" }));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+			},
+			new String[] {
+				"\u0622\u062F\u0631\u0633", "\u0627\u0633\u0645 \u067E\u062F\u0631", "\u0634\u0647\u0631\u062A", "\u0627\u0633\u0645"
+			}
+		));
 		table.getColumnModel().getColumn(1).setPreferredWidth(87);
-		table.getColumnModel().getColumn(2).setPreferredWidth(103);
+		table.getColumnModel().getColumn(3).setPreferredWidth(103);
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
@@ -36,7 +40,7 @@ public class CustomerCreation extends JDialog {
 		JButton button = new JButton("تائید");
 		panel.add(button);
 
-		setSize(390, 104);
+		setSize(485, 104);
 		setTitle("افزودن مشتری جدید");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
