@@ -9,8 +9,9 @@ import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import connection.DBConnection;
+
 import view.CustomersList;
-import DataBase.DBConnection;
 
 public class CustomerPaid implements ActionListener {
 

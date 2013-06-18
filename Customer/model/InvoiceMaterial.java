@@ -1,15 +1,15 @@
 package model;
 
-import view.mainUi;
+//import view.mainUi;
 
 public class InvoiceMaterial {
 
 	String name;
 	String unit;
 	float sellCost;
-	float qty;
+	int qty;
 
-	public InvoiceMaterial(String name, String unit, float sellCost, float qty) {
+	public InvoiceMaterial(String name, String unit, float sellCost, int qty) {
 		super();
 		this.name = name;
 		this.unit = unit;
@@ -41,11 +41,11 @@ public class InvoiceMaterial {
 		this.sellCost = sellCost;
 	}
 
-	public float getQty() {
+	public int getQty() {
 		return qty;
 	}
 
-	public void setQty(float qty) {
+	public void setQty(int qty) {
 		this.qty = qty;
 	}
 

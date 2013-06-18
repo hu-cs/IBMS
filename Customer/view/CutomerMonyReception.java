@@ -3,17 +3,14 @@ package view;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
-
 import java.awt.BorderLayout;
-
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
-import renderer.TableEditor;
+import ui.renderers.TableEditor;
 import controller.AddToGiveingAccount;
-
 import java.awt.FlowLayout;
 import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;

@@ -11,8 +11,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
-import renderer.TableEditor;
-import DataBase.DBConnection;
+import ui.renderers.TableEditor;
+
+import connection.DBConnection;
 import controller.AddToGiveingAccount;
 import controller.DoneEditCustomerReciver;
 
@@ -30,11 +31,11 @@ public class EditeCustomerPyament extends JDialog {
 	public EditeCustomerPyament() {
 		JScrollPane scrollPane = new JScrollPane();
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
-		
+
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-				new Object[][] { { null, null }, }, new String[] { CustomersList.Date,
-						CustomersList.Cost }));
+				new Object[][] { { null, null }, }, new String[] {
+						CustomersList.Date, CustomersList.Cost }));
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
@@ -43,7 +44,8 @@ public class EditeCustomerPyament extends JDialog {
 		getContentPane().add(panel, BorderLayout.SOUTH);
 
 		JButton button_1 = new JButton(CustomersList.CancelButton);
-		button_1.setIcon(new ImageIcon(getClass().getResource("/Icon/File_edit.png")));
+		button_1.setIcon(new ImageIcon(getClass().getResource(
+				"/Icon/File_edit.png")));
 		panel.add(button_1);
 		button_1.addActionListener(new ActionListener() {
 

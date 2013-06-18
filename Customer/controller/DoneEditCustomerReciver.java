@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 import view.CustomerDetails;
 import view.CustomersList;
-import DataBase.DBConnection;
+import connection.DBConnection;
 
 public class DoneEditCustomerReciver implements ActionListener {
 

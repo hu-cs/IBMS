@@ -11,7 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import view.CustomersList;
-import DataBase.DBConnection;
+import connection.DBConnection;
 
 public class EditCustomer implements ActionListener {
 	JTable table;
@@ -121,7 +121,8 @@ public class EditCustomer implements ActionListener {
 							+ customerName
 							+ "' where Customer_Name = '"
 							+ editCustomerName
-							+ "' And dataYearid = " + dataYearId);
+							+ "' And dataYearid = "
+							+ dataYearId);
 
 			statement.execute();
 

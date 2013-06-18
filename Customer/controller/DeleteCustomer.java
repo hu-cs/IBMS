@@ -11,7 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import view.CustomersList;
-import DataBase.DBConnection;
+import connection.DBConnection;
 
 public class DeleteCustomer implements ActionListener {
 
@@ -43,9 +43,12 @@ public class DeleteCustomer implements ActionListener {
 		int selectedrow = delettable.getSelectedRow();
 		if (selectedrow != -1) {
 
-			int ask = new JOptionPane().showConfirmDialog(null,
-					CustomersList.IfyouDeleteCustomerFromListItwillBeDeleteAllInformation, CustomersList.Alert, JOptionPane.YES_NO_OPTION,
-					JOptionPane.YES_OPTION);
+			int ask = new JOptionPane()
+					.showConfirmDialog(
+							null,
+							CustomersList.IfyouDeleteCustomerFromListItwillBeDeleteAllInformation,
+							CustomersList.Alert, JOptionPane.YES_NO_OPTION,
+							JOptionPane.YES_OPTION);
 
 			if (ask == JOptionPane.YES_OPTION) {
 
@@ -76,8 +79,8 @@ public class DeleteCustomer implements ActionListener {
 
 		} else {
 			new JOptionPane().showMessageDialog(null,
-					CustomersList.PleaseSelectOneRow, CustomersList.Information,
-					JOptionPane.INFORMATION_MESSAGE);
+					CustomersList.PleaseSelectOneRow,
+					CustomersList.Information, JOptionPane.INFORMATION_MESSAGE);
 
 		}
 

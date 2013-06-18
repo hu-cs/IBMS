@@ -39,7 +39,7 @@ import controller.DeptCustomer;
 import controller.PrintCustomer;
 //import model.SELECT;
 //import model.from;
-import DataBase.DBConnection;
+import connection.DBConnection;
 
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
@@ -52,7 +52,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 //import model.SELECT;
 //import model.from;
-import DataBase.DBConnection;
 
 public class CustomersList extends JDialog {
 	public static JTable table;
@@ -278,6 +277,8 @@ public class CustomersList extends JDialog {
 		panel_6.add(button_1);
 
 		JButton button_2 = new JButton(details);
+		button_2.setIcon(new ImageIcon(getClass().getResource(
+				"/Icon/file_info16.png")));
 
 		panel_1.add(button_2);
 		button_2.addActionListener(new ActionListener() {
@@ -287,9 +288,8 @@ public class CustomersList extends JDialog {
 
 				if (table.getSelectedRow() == -1) {
 
-					JOptionPane.showMessageDialog(null,
-						PleaseSelectOneRow, Information,
-							JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, PleaseSelectOneRow,
+							Information, JOptionPane.INFORMATION_MESSAGE);
 
 				} else {
 
@@ -342,18 +342,21 @@ public class CustomersList extends JDialog {
 		panel_3.add(panel_4, BorderLayout.WEST);
 
 		JToggleButton toggleButtonDept = new JToggleButton(DeptCustomer);
-		toggleButtonDept.setIcon(new ImageIcon(getClass().getResource("/Icon/group_delete.png")));
+		toggleButtonDept.setIcon(new ImageIcon(getClass().getResource(
+				"/Icon/group_delete.png")));
 		panel_4.add(toggleButtonDept);
-		
+
 		toggleButtonDept.addActionListener(new DeptCustomer());
 
 		JToggleButton toggleButtonPaid = new JToggleButton(CustomerPaid);
-		toggleButtonPaid.setIcon(new ImageIcon(getClass().getResource("/Icon/group_add.png")));
+		toggleButtonPaid.setIcon(new ImageIcon(getClass().getResource(
+				"/Icon/group_add.png")));
 		panel_4.add(toggleButtonPaid);
 		toggleButtonPaid.addActionListener(new CustomerPaid());
 
 		JToggleButton toggleButtonAll = new JToggleButton(All);
-		toggleButtonAll.setIcon(new ImageIcon(getClass().getResource("/Icon/group.png")));
+		toggleButtonAll.setIcon(new ImageIcon(getClass().getResource(
+				"/Icon/group.png")));
 		toggleButtonAll.setSelected(true);
 		panel_4.add(toggleButtonAll);
 		toggleButtonAll.addActionListener(new AllCustomer());
@@ -402,9 +405,8 @@ public class CustomersList extends JDialog {
 		panel_5.add(searchCombobox);
 
 		JLabel label = new JLabel(Search);
-		label.setIcon(new ImageIcon(getClass().getResource(
-				"/Icon/search.png")));
-		
+		label.setIcon(new ImageIcon(getClass().getResource("/Icon/search.png")));
+
 		panel_5.add(label);
 		load();
 		setTotalCompanyDemand();

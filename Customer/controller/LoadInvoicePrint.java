@@ -91,8 +91,6 @@ public class LoadInvoicePrint implements ActionListener, Printable {
 		mainFrame = new JFrame();
 		mainFrame.setUndecorated(true);
 
-		
-
 		JPanel northenPanel = new JPanel(new BorderLayout());
 		northenPanel.setOpaque(false);
 
@@ -181,8 +179,6 @@ public class LoadInvoicePrint implements ActionListener, Printable {
 		customerName.setForeground(Color.black);
 		companyIdentification.add(customerName, "3, 13, right, center");
 
-	
-
 		JLabel companyNameLabel = new JLabel("شرکت صنایع پلاستیک شکوفه بهار");
 		companyNameLabel.setForeground(Color.black);
 		companyNameLabel.setPreferredSize(new Dimension(158, 25));
@@ -207,9 +203,7 @@ public class LoadInvoicePrint implements ActionListener, Printable {
 		imageAndDatePanel.add(logoLabel, "4, 2, left, top");
 		logoLabel.setAlignmentY(5.0f);
 		logoLabel.setAlignmentX(5.0f);
-		logoLabel.setIcon(new ImageIcon(getClass().getResource("D:/Company/ShokufaBaharLogo.png")));
-
-		
+		logoLabel.setIcon(new ImageIcon(CompanyCharactristics.getLogo()));
 
 		JPanel totalAndSigmaturPanel = new JPanel();
 		totalAndSigmaturPanel.setOpaque(false);
@@ -283,7 +277,8 @@ public class LoadInvoicePrint implements ActionListener, Printable {
 		totalAndSigmaturPanel.add(companySignatureLabel,
 				"2, 6, center, default");
 
-		JLabel customerSignatureLabel = new JLabel(CustomersList.PlaceToAssignOrStomp);
+		JLabel customerSignatureLabel = new JLabel(
+				CustomersList.PlaceToAssignOrStomp);
 		customerSignatureLabel.setForeground(Color.black);
 		totalAndSigmaturPanel.add(customerSignatureLabel, "34, 6");
 
@@ -294,7 +289,7 @@ public class LoadInvoicePrint implements ActionListener, Printable {
 		mainPanel.setBorder(new LineBorder(Color.black));
 
 		mainFrame.add(mainPanel);
-		mainFrame.setSize(757, (int) (dialog.getSize().getHeight()));
+		mainFrame.setSize(757, (int) (dialog.getSize().getHeight())-10);
 		System.out.println(dialog.getSize().getHeight()
 				+ totalAndSigmaturPanel.getSize().getHeight());
 		System.out.println(dialog.getSize().getHeight());

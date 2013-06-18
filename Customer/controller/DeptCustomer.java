@@ -10,7 +10,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import view.CustomersList;
-import DataBase.DBConnection;
+import connection.DBConnection;
 
 public class DeptCustomer implements ActionListener {
 

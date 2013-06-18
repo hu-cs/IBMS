@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import org.omg.CORBA.portable.CustomValue;
 
-import DataBase.DBConnection;
+import connection.DBConnection;
 import view.CustomerDetails;
 import view.CustomersList;
 import view.EditeCustomerPyament;
@@ -23,13 +23,13 @@ public class EditeCustomerReciver implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		if (CustomerDetails.giveing.getSelectedRow() == -1) {
-			JOptionPane.showMessageDialog(null, CustomersList.PleaseSelectOneRow ,
+			JOptionPane.showMessageDialog(null,
+					CustomersList.PleaseSelectOneRow,
 					CustomersList.Information, JOptionPane.INFORMATION_MESSAGE);
 
 		} else
 			new EditeCustomerPyament();
 
 	}
-
 
 }

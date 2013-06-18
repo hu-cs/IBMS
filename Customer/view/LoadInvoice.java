@@ -1,23 +1,22 @@
 package view;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.Sizes;
 
+import connection.DBConnection;
 import controller.CompanyCharactristics;
+import controller.DataYearId;
 import controller.LoadInvoicePrint;
 import model.Material;
 
@@ -25,7 +24,7 @@ public class LoadInvoice extends JDialog {
 
 	private JTable table;
 	TableModel tableModel = new DefaultTableModel(new String[][] { {}, {}, {},
-			{}, { CustomersList.SelectMaterial }, { "1" } }, new String[] { "NO.", "Name",
+			{}, { "اتنخاب حنس" }, { "1" } }, new String[] { "NO.", "Name",
 			"Unit", "Quantity" });
 
 	JLabel invocieNumebrLabel;
@@ -55,7 +54,7 @@ public class LoadInvoice extends JDialog {
 
 		JPanel panel = new JPanel();
 		buttonsPanel.add(panel, BorderLayout.WEST);
-		JButton print = new JButton(CustomersList.PrintInvoice);
+		JButton print = new JButton(CompanyUsed.printText);
 		print.setIcon(new ImageIcon(
 				"D:\\Learnly\\University\\Software Engineering\\IBMS\\Selected icons\\PNG\\16x16\\print.png"));
 
@@ -83,7 +82,7 @@ public class LoadInvoice extends JDialog {
 		invoiceTotalValueLabel = new JLabel("0");
 		invoiceTotalPanel.add(invoiceTotalValueLabel, "2, 2, center, center");
 
-		JLabel invoiceTotalLabel = new JLabel(CustomersList.Total);
+		JLabel invoiceTotalLabel = new JLabel("جمع کل:");
 		invoiceTotalLabel
 				.setIcon(new ImageIcon(
 						"D:\\Learnly\\University\\Software Engineering\\IBMS\\Selected icons\\total_plan_cost (2).png"));
@@ -127,7 +126,7 @@ public class LoadInvoice extends JDialog {
 		companyIdentification.add(addressDescription,
 				"1, 2, 3, 1, right, default");
 
-		JLabel addressLabel = new JLabel(CustomersList.Adress);
+		JLabel addressLabel = new JLabel(CompanyUsed.address);
 		addressLabel.setFont(new Font("2  Narenj", Font.PLAIN, 16));
 		companyIdentification.add(addressLabel, "5, 2, right, top");
 
@@ -141,34 +140,32 @@ public class LoadInvoice extends JDialog {
 		mobileLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		companyIdentification.add(mobileLabel, "3, 4, right, fill");
 
-		JLabel callNumberLabel = new JLabel( CustomersList.PhoneNumber);
+		JLabel callNumberLabel = new JLabel(CompanyUsed.tell);
 		callNumberLabel.setFont(new Font("2  Narenj", Font.PLAIN, 16));
 		companyIdentification.add(callNumberLabel, "5, 4, right, default");
-		// for (int counter = 0; counter < Customer.customerList.size();
-		// counter++) {
-		// customerComboBox.addItem(Customer.customerList.get(counter));
-		// }
 
-		JLabel label_3 = new JLabel("0406876");
+		JLabel label_3 = new JLabel(CompanyCharactristics.getFax());
 		companyIdentification.add(label_3, "3, 6, right, default");
 
-		JLabel label_2 = new JLabel(CustomersList.Fax);
+		JLabel label_2 = new JLabel(CompanyUsed.fax);
 		label_2.setFont(new Font("2  Narenj", Font.PLAIN, 16));
 		companyIdentification.add(label_2, "5, 6, right, default");
 
-		JLabel lblWwwshokufabaharcom = new JLabel("www.shokufabahar.com");
+		JLabel lblWwwshokufabaharcom = new JLabel(
+				CompanyCharactristics.getWebSite());
 		companyIdentification.add(lblWwwshokufabaharcom,
 				"1, 8, 3, 1, right, default");
 
-		JLabel label = new JLabel(CustomersList.WebSite);
+		JLabel label = new JLabel(CompanyUsed.webSite);
 		label.setFont(new Font("2  Narenj", Font.PLAIN, 16));
 		companyIdentification.add(label, "5, 8, right, default");
 
-		JLabel lblInfoshokufabarahcom = new JLabel("info@shokufabarah.com");
+		JLabel lblInfoshokufabarahcom = new JLabel(
+				CompanyCharactristics.getEmail());
 		companyIdentification.add(lblInfoshokufabarahcom,
 				"1, 10, 3, 1, right, default");
 
-		JLabel label_1 = new JLabel(CustomersList.Email);
+		JLabel label_1 = new JLabel(CompanyUsed.email);
 		label_1.setFont(new Font("2  Narenj", Font.PLAIN, 16));
 		companyIdentification.add(label_1, "5, 10, right, default");
 
@@ -182,10 +179,10 @@ public class LoadInvoice extends JDialog {
 		invocieNumebrLabel = new JLabel("");
 		invoiceNumberPanel.add(invocieNumebrLabel);
 
-		JLabel invoiceLabel = new JLabel(CustomersList.InvoiceNumber);
+		JLabel invoiceLabel = new JLabel("شماره فاکتور");
 		invoiceNumberPanel.add(invoiceLabel);
 
-		JLabel companyNameLabel = new JLabel("شرکت صنایع پلاستیک شکوفه بهار");
+		JLabel companyNameLabel = new JLabel(CompanyCharactristics.getName());
 		companyNameLabel.setPreferredSize(new Dimension(158, 25));
 		companyNameLabel.setFont(new Font("2  Farnaz", Font.PLAIN, 16));
 		companyNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -204,12 +201,11 @@ public class LoadInvoice extends JDialog {
 				RowSpec.decode("8dlu"), RowSpec.decode("max(8dlu;default)"),
 				RowSpec.decode("32px"), }));
 
-		JLabel logoLabel = new JLabel();
-		logoLabel.setIcon(new ImageIcon(getClass().getResource("/Icon/shokufabaharLogo.png")));
+		JLabel logoLabel = new JLabel("");
 		imageAndDatePanel.add(logoLabel, "4, 2, left, top");
 		logoLabel.setAlignmentY(5.0f);
 		logoLabel.setAlignmentX(5.0f);
-//		logoLabel.setIcon(new ImageIcon());
+		logoLabel.setIcon(new ImageIcon(CompanyCharactristics.getLogo()));
 		JPanel invoiceTablePanel = new JPanel(new BorderLayout());
 		// ============================================
 
@@ -231,13 +227,14 @@ public class LoadInvoice extends JDialog {
 				return columnEditables[column];
 			}
 		});
+
+		table.getTableHeader().setReorderingAllowed(false);
 		table.getColumnModel().getColumn(4).setPreferredWidth(133);
 		table.getColumnModel().getColumn(5).setResizable(false);
 		table.getColumnModel().getColumn(5).setPreferredWidth(48);
 		table.setRowHeight(24);
 
 		scrollPane.setViewportView(table);
-	
 
 		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 			{
@@ -246,24 +243,22 @@ public class LoadInvoice extends JDialog {
 		});
 
 		northenPanel.add(invoiceTablePanel, BorderLayout.SOUTH);
-		// nameColumn.setCellEditor(new DefaultCellEditor(materialList));
 		final JComboBox<Material> tempCombobox = new JComboBox<Material>();
-		
+
 		dateValueLabel = new JLabel("Date");
 		imageAndDatePanel.add(dateValueLabel, "4, 5");
 
-		JLabel dateLabel = new JLabel(CustomersList.Date );
+		JLabel dateLabel = new JLabel(CompanyUsed.date);
 		dateLabel.setIconTextGap(0);
 		dateLabel
 				.setIcon(new ImageIcon(
 						"D:\\Learnly\\University\\Software Engineering\\IBMS\\Selected icons\\date_add.png"));
 		imageAndDatePanel.add(dateLabel, "6, 5");
 
-		
-		customerNameLabel = new JLabel(CustomersList.Customer);
+		customerNameLabel = new JLabel();
 		companyIdentification.add(customerNameLabel, "3, 11, right, default");
 
-		JLabel customerLabel = new JLabel(CustomersList.CustomerRegard);
+		JLabel customerLabel = new JLabel("مشتری محترم:");
 		customerLabel
 				.setIcon(new ImageIcon(
 						"D:\\Learnly\\University\\Software Engineering\\IBMS\\Selected icons\\user_gray.png"));
@@ -283,22 +278,20 @@ public class LoadInvoice extends JDialog {
 		System.err.println(height);
 
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		
-		setSize(900, (height * 16) + 360);
-		// setMinimumSize(new Dimension(757, 362));
+
+		setSize(900, (height * 23) + 360);
 		setLocationRelativeTo(null);
 		setTitle("Invoice");
 		setVisible(true);
-		// setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	}
 
 	public static void main(String[] args) {
 		new LoadInvoice(37);
-		
 	}
 
 	private int loadValues(int invoiceNumber) {
+		System.err.println("load vales");
 		((DefaultTableModel) table.getModel()).setRowCount(0);
 
 		int zarib = 0;
@@ -312,9 +305,11 @@ public class LoadInvoice extends JDialog {
 		float invoiceTotalCost = 0;
 
 		try {
-			java.sql.PreparedStatement statmenet = DataBase.DBConnection.connection
+			java.sql.PreparedStatement statmenet = DBConnection.connection
 					.prepareStatement("SELECT name,unit,cost,qty,customer,dateandtime FROM `invoice_materials` WHERE `invoice_num` ="
-							+ invoiceNumber);
+							+ invoiceNumber
+							+ " and data_year_id = "
+							+ DataYearId.getDataYearId());
 
 			ResultSet result = statmenet.executeQuery();
 			while (result.next()) {
@@ -326,6 +321,11 @@ public class LoadInvoice extends JDialog {
 				customerName = result.getString(5);
 				date = result.getString(6);
 				totalCost = qty * cost;
+
+				System.out.println(name);
+				System.out.println(unit);
+				System.out.println(cost);
+				System.out.println(qty);
 
 				((DefaultTableModel) table.getModel()).addRow(new Object[] {
 						totalCost, cost, unit, qty, name,

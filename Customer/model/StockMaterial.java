@@ -1,14 +1,18 @@
 package model;
 
+import java.util.ArrayList;
+
 public class StockMaterial {
+	public static ArrayList<StockMaterial> stockList = new ArrayList<StockMaterial>();
 	String name;
 	String unit;
 	int qty;
 
 	public StockMaterial(String name, String unit, int qty) {
-		setName(name);
-		setUnit(unit);
-		setQty(qty);
+		super();
+		this.name = name;
+		this.unit = unit;
+		this.qty = qty;
 	}
 
 	public String getName() {

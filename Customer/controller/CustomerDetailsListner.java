@@ -5,11 +5,10 @@ import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import DataBase.DBConnection;
+import connection.DBConnection;
 import view.CustomerDetails;
 
 public class CustomerDetailsListner implements ActionListener {

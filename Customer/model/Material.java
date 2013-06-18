@@ -11,7 +11,8 @@ import java.util.Set;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import view.mainUi;
+//import view.mainUi;
+
 
 public class Material {
 

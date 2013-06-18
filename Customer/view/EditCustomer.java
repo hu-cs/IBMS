@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
-import DataBase.DBConnection;
+import connection.DBConnection;
 import controller.AddCustomer;
 import controller.DataYearId;
 
@@ -66,7 +66,7 @@ public class EditCustomer extends JDialog {
 		button.addActionListener(new controller.EditCustomer(table, this));
 		load(CustomersList.table);
 		setSize(485, 120);
-		setTitle(CustomersList.EditCustomer );
+		setTitle(CustomersList.EditCustomer);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setModalityType(ModalityType.APPLICATION_MODAL);

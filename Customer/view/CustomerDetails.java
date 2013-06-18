@@ -14,8 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import DataBase.DBConnection;
-
+import connection.DBConnection;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
@@ -146,7 +145,8 @@ public class CustomerDetails extends JDialog {
 						"\u0645\u0628\u0644\u063A",
 						"\u0634\u0645\u0627\u0631\u0647 \u0641\u0627\u06A9\u062A\u0648\u0631",
 						"\u0634\u0645\u0627\u0631\u0647" }) {
-			boolean[] columnEditables = new boolean[] { false, false, false, false };
+			boolean[] columnEditables = new boolean[] { false, false, false,
+					false };
 
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
@@ -229,6 +229,8 @@ public class CustomerDetails extends JDialog {
 		});
 
 		JButton button_2 = new JButton(CustomersList.SeeInvoice);
+		button_2.setIcon(new ImageIcon(getClass().getResource("/Icon/File_info16.png")));
+		
 		button_2.addActionListener(new ActionListener() {
 
 			@Override
@@ -254,8 +256,6 @@ public class CustomerDetails extends JDialog {
 		panel_4.add(button_1);
 		button_1.addActionListener(new ActionListener() {
 
-			
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
@@ -334,7 +334,7 @@ public class CustomerDetails extends JDialog {
 
 		setCompanyDemand();
 
-		setSize(709, 600);
+		setSize(770, 600);
 		setLocationRelativeTo(null);
 		setTitle("حساب" + "  " + CustomersList.customerName);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -350,6 +350,9 @@ public class CustomerDetails extends JDialog {
 		int SelectedRow = customerTable.getSelectedRow();
 		String name = customerTable.getValueAt(SelectedRow, 6).toString();
 		String lastName = customerTable.getValueAt(SelectedRow, 5).toString();
+
+		String totalname = name + " " + lastName;
+
 		float cost;
 		String DateAndTime;
 
@@ -358,7 +361,8 @@ public class CustomerDetails extends JDialog {
 		try {
 			PreparedStatement statement = DBConnection.connection
 					.prepareStatement("SELECT Cost,Date_And_Time from customer_giving_account  WHERE Name = '"
-							+ name + "' and Last_Name='" + lastName + "'");
+							+ totalname+"'");
+			// + "' and Last_Name='" + lastName + "'"
 
 			ResultSet result = statement.executeQuery();
 
