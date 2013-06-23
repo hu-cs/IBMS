@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/AcountingProject/forms-1.3.0.jar" sourcepath="/AcountingProject/forms-1.3.0-src.zip"/>
+	<classpathentry kind="lib" path="/AcountingProject/lib/JTattoo-1.6.8.jar"/>
+	<classpathentry kind="lib" path="D:/Software/Java/java equiepment/JarFiles api/swingx.jar" sourcepath="D:/Software/Java/java equiepment/JarFiles api/swingx.jar"/>
+	<classpathentry kind="lib" path="D:/Software/Java/java equiepment/Exteracted api/calendar-component-demo/lib/calendarcomponent.jar"/>
+	<classpathentry kind="lib" path="D:/Software/Java/java equiepment/Exteracted api/mysql-connector-java-5.1.16/mysql-connector-java-5.1.22-bin.jar"/>
+	<classpathentry kind="lib" path="D:/Software/Java/java equiepment/JarFiles api/junit-4.11.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
